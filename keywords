@@ -1,0 +1,14 @@
+# article_dat
+import requests
+from bs4 import BeautifulSoup
+
+# Fetch news articles based on a keyword
+url = 'https://news.google.com/rss/search?q=KEYWORDS'    # change keywords 
+response = requests.get(url)
+soup = BeautifulSoup(response.content, 'xml')
+
+# Print the title and description of each article
+for item in soup.find_all('item'):
+    print('Title:', item.title.text)
+    print('Description:', item.description.text)
+    print()
